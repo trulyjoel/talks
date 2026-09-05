@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 
 const talksDir = 'talks'
 const distDir = 'dist'
@@ -21,11 +21,10 @@ if (slugs.length === 0) {
 
 for (const slug of slugs) {
   const entry = join(talksDir, slug, 'slides.md')
-  const out = join('..', '..', distDir, slug)
+  const out = resolve(distDir, slug)
   const base = `/${repoName}/${slug}/`
   console.log(`Building ${entry} -> dist/${slug} (base ${base})`)
-  execFileSync('pnpm', ['exec', 'slidev', 'build', 'slides.md', '--out', out, '--base', base], {
-    cwd: join(talksDir, slug),
+  execFileSync('pnpm', ['exec', 'slidev', 'build', entry, '--out', out, '--base', base], {
     stdio: 'inherit',
   })
 }
