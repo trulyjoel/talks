@@ -1,0 +1,22 @@
+{
+  "name": "talks",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "slidev",
+    "build": "node scripts/build-all.mjs",
+    "export": "slidev export",
+    "lint": "oxlint scripts",
+    "format": "oxfmt scripts"
+  },
+  "devDependencies": {
+    "@slidev/cli": "52.19.1",
+    "@slidev/theme-default": "0.25.0",
+    "oxlint": "1.81.0",
+    "oxfmt": "0.66.0",
+    "vue": "3.5.42"
+  }
+}
